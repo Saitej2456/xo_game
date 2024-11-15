@@ -308,10 +308,6 @@ void playerX(char arena[][3])
         Rectangle r31 = {(GetScreenWidth()/2)-(X.width/2)-139,(GetScreenHeight()/2)-(X.height/2)+142,X.width,X.height};
         Rectangle r32 = {(GetScreenWidth()/2)-(X.width/2)+4,(GetScreenHeight()/2)-(X.height/2)+142,X.width,X.height};
         Rectangle r33 = {(GetScreenWidth()/2)-(X.width/2)+142,(GetScreenHeight()/2)-(X.height/2)+142,X.width,X.height};
-        if(!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        {
-            return;
-        }
 
             if(CheckCollisionPointRec(GetMousePosition(),r11))
             {
@@ -732,7 +728,7 @@ int main()
         int height_of_window = 500;
         SetTargetFPS(143);
         
-       // InitAudioDevice();
+       InitAudioDevice();
         InitWindow(width_of_window,height_of_window,"XO game");
         Music music_bg = LoadMusicStream("audio/bg.mp3");
         
@@ -848,13 +844,16 @@ int main()
                             }
                             if((O_lock == true)&&(X_lock == false))
                             {  
-                                playerO(arena);
                                 Sound marking = LoadSound("audio/mark.mp3");
-                                PlaySound(marking);
+                                Sound wrong = LoadSound("audio/test.mp3");
+                                playerO(arena);
+                                
+                                
                                 if(collison_f == false)
                                 {
                                     if((O_lock == false)&&(X_lock == true))
                                     {
+                                        PlaySound(wrong);
                                         turn = 'o';
                                         O_lock = true;
                                         X_lock = false;
@@ -866,6 +865,7 @@ int main()
                                     if((O_lock == false)&&(X_lock == true))
                                     {
                                         turn = 'x';
+                                        PlaySound(marking);
                                         collison_f = false;
                                     }
                                 }
@@ -875,18 +875,18 @@ int main()
                             }
                             if((O_lock == false)&&(X_lock == true))
                             {
-                                
-                                playerX(arena);
                                 Sound marking = LoadSound("audio/mark.mp3");
-                                PlaySound(marking);
+                                Sound wrong = LoadSound("audio/test.mp3");
+                                playerX(arena);
+                                
                                 if(collison_f == false)
                                 {
                                     if((O_lock == true)&&(X_lock == false))
                                     {
+                                        PlaySound(wrong);
                                         turn = 'x';
                                         O_lock = false;
                                         X_lock = true;
-                                        collison_f = false;
                                     }
                                 }
                                 else
@@ -894,6 +894,7 @@ int main()
                                     if((O_lock == true)&&(X_lock == false))
                                     {
                                         turn = 'o';
+                                        PlaySound(marking);
                                         collison_f = false;
                                     }
                                 }
@@ -909,7 +910,7 @@ int main()
                     }
                 EndDrawing(); 
             }
-        //CloseAudioDevice();
+        CloseAudioDevice();
         CloseWindow();
     }
    
