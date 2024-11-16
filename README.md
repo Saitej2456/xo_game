@@ -21,12 +21,10 @@ A repository containing two Tic Tac Toe games written in C:
 ### For Linux
 1. **GCC** (GNU Compiler Collection)
 2. **Git** (to clone the repository)
-3. **Raylib Library** (only for the graphical game)
 
 ### For Windows
 1. **MinGW** (Minimalist GNU for Windows) or another GCC compiler.
 2. **Git** (to clone the repository)
-3. **Raylib Library** (only for the graphical game). Download it from [Raylib's official website](https://www.raylib.com/).
 
 ---
 
